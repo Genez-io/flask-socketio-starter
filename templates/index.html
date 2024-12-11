@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask-SocketIO Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Flask-SocketIO Chat Example</h1>
+    <div id="messages"></div>
+    <input type="text" id="messageInput">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        var socket = io();
+        
+        // When the client connects, request the message history
+        socket.on('connect', function() {
+            socket.emit('request_history');
+        });
+
+        // When the server sends the message history, display it
+        socket.on('message_history', function(messages) {
+            var messagesDiv = document.getElementById('messages');
+            messages.forEach(function(msg) {
+                messagesDiv.innerHTML += '<p>' + msg + '</p>';
+            });
+        });
+        
+        socket.on('message', function(msg) {
+            var messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += '<p>' + msg + '</p>';
+        });
+
+        function sendMessage() {
+            var input = document.getElementById('messageInput');
+            socket.emit('message', input.value);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>

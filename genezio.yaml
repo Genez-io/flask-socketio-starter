@@ -1,0 +1,14 @@
+name: flask-socketio-starter
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: python
+        packageManager: pip
+    functions:
+        - name: flask
+          path: .
+          handler: app
+          entry: app.py
+          type: httpServer
