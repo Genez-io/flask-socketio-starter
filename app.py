@@ -10,7 +10,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 def index():
     return render_template('index.html')
 
-messages = []  # Lista pentru stocarea mesajelor
+messages = []  
 
 @socketio.on('request_history')
 def handle_history_request():
@@ -18,7 +18,7 @@ def handle_history_request():
 
 @socketio.on('message')
 def handle_message(msg):
-    messages.append(msg)  # Salvăm mesajul în listă
+    messages.append(msg) 
     emit('message', msg, broadcast=True)
 
 if __name__ == '__main__':
