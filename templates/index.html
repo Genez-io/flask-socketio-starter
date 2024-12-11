@@ -13,12 +13,12 @@
     <script>
         var socket = io();
         
-        // La conectare, cerem istoricul mesajelor
+        // When the client connects, request the message history
         socket.on('connect', function() {
             socket.emit('request_history');
         });
-        
-        // Primim istoricul mesajelor
+
+        // When the server sends the message history, display it
         socket.on('message_history', function(messages) {
             var messagesDiv = document.getElementById('messages');
             messages.forEach(function(msg) {
