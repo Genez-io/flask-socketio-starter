@@ -32,16 +32,22 @@ git clone https://github.com/Genez-io/flask-socketio-starter
 cd flask-socketio-starter
 ```
 
-2. Install the required dependencies:
+2. Create a virtual environment:
 ```bash
-pip install flask flask-socketio flask-cors
+python3 -m venv venv
+source venv/bin/activate # On Windows use `venv\Scripts\activate`
+```
+
+3. Install the required dependencies:
+```bash
+pip3 install -r requirements.txt
 ```
 
 ## Running the Application
 
 Start the server by running:
 ```bash
-python app.py
+python3 app.py
 ```
 
 The application will be available at `http://localhost:5000`
